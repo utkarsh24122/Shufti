@@ -50,4 +50,4 @@ path_to_ctfr_tool="[path]/ctfr/ctfr.py"
 ```
 # Requirements
 - Golang
-- Required_tools.txt
+- [Required Tools](http://www.ur.ac.rw)
