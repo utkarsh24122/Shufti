@@ -40,6 +40,7 @@ Jump To :
 
 - Filters active subdomains (DNS Resolution & probing)
 - Segragates Subdomains according to response code
+
 .
 
 - Crawling and Recursive Fuzzing for Content Discovery & sensitive file/directory Exposure
