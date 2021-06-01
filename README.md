@@ -1,6 +1,10 @@
 # Shufti
 Latest Recon Workflow Framework
+
 Fast and Deep Recon on Large Scope to get the Juicy Stuff
+
+
+
 
 # Features
 
@@ -50,4 +54,10 @@ path_to_ctfr_tool="[path]/ctfr/ctfr.py"
 ```
 # Requirements
 - Golang
-- [Required Tools](http://www.ur.ac.rw)
+- [Required Tools](https://github.com/utkarsh24122/Shufti/blob/main/Required_tools.txt)
+
+# Usage
+```
+./shufti.sh target.com
+```
+# ScreenShots
