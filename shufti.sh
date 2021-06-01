@@ -129,19 +129,21 @@ cat all_crawl.txt | awk -vT="$target" '{ print T $0 }' >> all_paths.txt
 cat gau_output.txt | grep .js >> jsfiles.txt;
 mv jsfiles.txt shew.txt; cat shew.txt | sort -u >> jsfiles.txt;rm shew.txt
 echo ""
+echo "JAVASCRIPT Files Enumerated & saved in /$target/jsfiles.txt" 
+echo ""
+echo ""
 echo -e "\n\e[36m[\e[32m+\e[36m]\e[92m Fuzzing for sensitive files & Directories \e[0m\n" 
 echo ""
 temp="https://$target/FUZZ"
 ffuf -mc all -fc 404 -ac -t 400 -sf -w $Path_To_FUZZ_Wordlist -u $temp 
 echo ""
-echo "JAVASCRIPT Files Enumerated & saved in /$taeget/jsfiles.txt" 
 echo ""
 echo "####################################################################################"
 echo "###################        Parameter Discovery              ########################"
 echo "####################################################################################"
 echo -e "\n\e[36m[\e[32m+\e[36m]\e[92m Collecting Parameters \e[0m\n" 
 python3 $path_to_paramspider --domain $target --level high --exclude eot,jpg,jpeg,gif,css,tif,tiff,png,ttf,otf,woff,woff2,ico,pdf,svg,txt,js --quiet --output params.txt >> tmpparam.txt; rm tmpparam.txt
-cat ./output/params.txt >> params.txt ; cd output ; rm * ; cd .. ; rmdir output/;
+cat ./output/params.txt >> params.txt ; rm -r output/;
 gau -subs $target | grep -v png | grep -v jpg | grep -v .js  | grep -v woff | grep -v svg >> gau_output.txt;
 mv gau_output.txt temp6.txt;cat temp6.txt | sort -u >> gau_output.txt ; rm temp6.txt
 cat gau_output.txt | grep = >> params.txt
