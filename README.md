@@ -55,6 +55,7 @@ path_to_ctfr_tool="[path]/ctfr/ctfr.py"
 # Requirements
 - Golang
 - [Required Tools](https://github.com/utkarsh24122/Shufti/blob/main/Required_tools.txt)
+PS: working on a single script to install all tools at once!
 
 # Usage
 ```
