@@ -3,15 +3,17 @@ Latest Recon Workflow Framework
 
 Fast and Deep Recon on Large Scope to get the Juicy Stuff
 
-[Features](https://github.com/utkarsh24122/Shufti/blob/main/README.md#features)                
+Jump To :
 
-[Installation](https://github.com/utkarsh24122/Shufti/blob/main/README.md#installation)
+- [Features](https://github.com/utkarsh24122/Shufti/blob/main/README.md#features)                
 
-[Requirements](https://github.com/utkarsh24122/Shufti/blob/main/README.md#requirements)
+- [Installation](https://github.com/utkarsh24122/Shufti/blob/main/README.md#installation)
 
-[Usage](https://github.com/utkarsh24122/Shufti/blob/main/README.md#usage)
+- [Requirements](https://github.com/utkarsh24122/Shufti/blob/main/README.md#requirements)
 
-[ScreenShots](https://github.com/utkarsh24122/Shufti/blob/main/README.md#screenshots)
+- [Usage](https://github.com/utkarsh24122/Shufti/blob/main/README.md#usage)
+
+- [ScreenShots](https://github.com/utkarsh24122/Shufti/blob/main/README.md#screenshots)
 
 
 # Features
