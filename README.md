@@ -3,6 +3,15 @@ Latest Recon Workflow Framework
 
 Fast and Deep Recon on Large Scope to get the Juicy Stuff
 
+```
+     _______. __    __   __    __   _______  .__________.  __  
+    /       ||  |  |  | |  |  |  | |   ____| |          | |  | 
+   |   (---- |  |__|  | |  |  |  | |  |__    |___|  |___| |  | 
+    \   \    |   __   | |  |  |  | |   __|       |  |     |  | 
+.----)   |   |  |  |  | |   ---  | |  |          |  |     |  | 
+|_______/    |__|  |__|  \______/  |__|          |__|     |__|
+```
+
 Jump To :
 
 - [Features](https://github.com/utkarsh24122/Shufti/blob/main/README.md#features)                
@@ -72,3 +81,10 @@ PS: working on a single script to install all tools at once!
 ./shufti.sh target.com
 ```
 # ScreenShots
+![ss1](https://user-images.githubusercontent.com/54320208/120292073-977e5080-c2e1-11eb-9979-5675e51bd916.PNG)
+![ss2](https://user-images.githubusercontent.com/54320208/120292127-a6fd9980-c2e1-11eb-9ed6-55dff675fb5f.PNG)
+![ss3](https://user-images.githubusercontent.com/54320208/120292164-b0870180-c2e1-11eb-835b-a315959a98e5.PNG)
+![ss4](https://user-images.githubusercontent.com/54320208/120292213-bd0b5a00-c2e1-11eb-92ed-0bde06c09fab.PNG)
+
+
+
