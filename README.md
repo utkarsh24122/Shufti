@@ -28,3 +28,5 @@ Fast and Deep Recon on Large Scope to get the Juicy Stuff
 .
 
 - Parameter Discovery (Along with Hidden Parameters)
+
+# Installation
