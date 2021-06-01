@@ -24,6 +24,8 @@ Jump To :
 
 - [ScreenShots](https://github.com/utkarsh24122/Shufti/blob/main/README.md#screenshots)
 
+- [Development](https://github.com/utkarsh24122/Shufti/blob/main/README.md#development) 
+
 
 # Features
 
@@ -87,5 +89,6 @@ PS: working on a single script to install all tools at once!
 ![ss3](https://user-images.githubusercontent.com/54320208/120292164-b0870180-c2e1-11eb-835b-a315959a98e5.PNG)
 ![ss4](https://user-images.githubusercontent.com/54320208/120292213-bd0b5a00-c2e1-11eb-92ed-0bde06c09fab.PNG)
 
-
+# Development
+- Working on Including Automated OSINT
 
