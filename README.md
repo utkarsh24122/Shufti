@@ -31,7 +31,7 @@ Jump To :
 
 - Passive Subdomain Enumeration (Multiple latest Tools used)
 - Active Subdomain Enumeration  (DNSx)
-- Subdomain Enum by Certificate Transparancy
+- Subdomain Enum by Certificate Transparency
 - DNS Subdomain Enumeration
 
 .
@@ -41,7 +41,7 @@ Jump To :
 .
 
 - Filters active subdomains (DNS Resolution & probing)
-- Segragates Subdomains according to response code
+- Segregates Subdomains according to response code
 
 .
 
