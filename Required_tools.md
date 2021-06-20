@@ -1,31 +1,31 @@
-[subfinder]()
+[subfinder](https://github.com/projectdiscovery/subfinder)
 
-[assetfinder]()
+[assetfinder](https://github.com/tomnomnom/assetfinder)
 
-[findomain]()
+[findomain](https://github.com/Findomain/Findomain)
 
-[waybackurls]()
+[waybackurls](https://github.com/tomnomnom/waybackurls)
 
-[crobat]()
+[crobat](https://github.com/lnxcrew/crobat)
 
-[dnsx]()
+[dnsx](https://github.com/projectdiscovery/dnsx)
 
-[unfurl]()
+[unfurl](https://github.com/tomnomnom/unfurl)
 
-[ctfr]()
+[ctfr](https://github.com/UnaPibaGeek/ctfr)
 
-[Nuclei & Nuclei Templates]()
+[Nuclei & Nuclei Templates](https://github.com/projectdiscovery/nuclei)
 
-[httprobe]()
+[httprobe](https://github.com/tomnomnom/httprobe)
 
-[httpx]()
+[httpx](https://github.com/projectdiscovery/httpx)
 
-[gospider]()
+[gospider](https://github.com/jaeles-project/gospider)
 
-[gau]()
+[gau](https://github.com/lc/gau)
 
-[ffuf]()
+[ffuf](https://github.com/ffuf/ffuf)
 
-[paramspider]()
+[paramspider](https://github.com/devanshbatham/ParamSpider)
 
-[arjun]()
+[arjun](https://github.com/s0md3v/Arjun)
