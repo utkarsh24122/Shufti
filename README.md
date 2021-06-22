@@ -64,7 +64,7 @@ $ chmod +x shufti.sh
 ```
 open shell file and configure
 ```
-# Kindly Configure :
+# Configurations :
 PATH_TO_DNS_Resolvers="[path]/resolvers.txt"
 PATH_TO_NucleiTakeoverTemplate="[path]/nuclei-templates/takeovers/"
 Path_To_FUZZ_Wordlist="onelistforallshort.txt" 
