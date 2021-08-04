@@ -299,7 +299,7 @@ function sub_passive(){
 		subfinder -d $domain -all -o .tmp/subfinder_psub.txt 2>>"$LOGFILE" &>/dev/null
 		assetfinder --subs-only $domain 2>>"$LOGFILE" | anew -q .tmp/assetfinder_psub.txt
 		amass enum -passive -d $domain -config $AMASS_CONFIG -o .tmp/amass_psub.txt 2>>"$LOGFILE" &>/dev/null
-		findomain --quiet -t $domain -u .tmp/findomain_psub.txt 2>>"$LOGFILE" &>/dev/null
+	
 		timeout 10m waybackurls $domain | unfurl -u domains 2>>"$LOGFILE" | anew -q .tmp/waybackurls_psub.txt
 		timeout 10m gauplus -t $GAUPLUS_THREADS -random-agent -subs $domain | unfurl -u domains 2>>"$LOGFILE" | anew -q .tmp/gau_psub.txt
 		crobat -s $domain 2>>"$LOGFILE" | anew -q .tmp/crobat_psub.txt
@@ -483,7 +483,7 @@ function sub_recursive(){
 				subfinder -d $sub -all -silent 2>>"$LOGFILE" | anew -q .tmp/passive_recursive.txt
 				assetfinder --subs-only $sub 2>>"$LOGFILE" | anew -q .tmp/passive_recursive.txt
 				amass enum -passive -d $sub -config $AMASS_CONFIG 2>>"$LOGFILE" | anew -q .tmp/passive_recursive.txt
-				findomain --quiet -t $sub 2>>"$LOGFILE" | anew -q .tmp/passive_recursive.txt
+				
 			done
 			[ -s ".tmp/passive_recursive.txt" ] && puredns resolve .tmp/passive_recursive.txt -w .tmp/passive_recurs_tmp.txt -r $resolvers --resolvers-trusted $resolvers_trusted -l $PUREDNS_PUBLIC_LIMIT --rate-limit-trusted $PUREDNS_TRUSTED_LIMIT 2>>"$LOGFILE" &>/dev/null
 			[ -s ".tmp/passive_recurs_tmp.txt" ] && cat .tmp/passive_recurs_tmp.txt | anew -q subdomains/subdomains.txt
@@ -618,7 +618,7 @@ function webprobe_full(){
 	if { [ ! -f "$called_fn_dir/.${FUNCNAME[0]}" ] || [ "$DIFF" = true ]; } && [ "$WEBPROBEFULL" = true ]; then
 		start_func "Http probing non standard ports"
 
-		[ -s "subdomains/subdomains.txt" ] && sudo unimap --fast-scan -f subdomains/subdomains.txt --ports $UNCOMMON_PORTS_WEB -q -k --url-output 2>>"$LOGFILE" | anew -q .tmp/nmap_uncommonweb.txt
+		[ -s "subdomains/subdomains.txt" ] && unimap --fast-scan -f subdomains/subdomains.txt --ports $UNCOMMON_PORTS_WEB -q -k --url-output 2>>"$LOGFILE" | anew -q .tmp/nmap_uncommonweb.txt
 		[ -s ".tmp/nmap_uncommonweb.txt" ] && cat .tmp/nmap_uncommonweb.txt | httpx -follow-host-redirects -random-agent -status-code -threads $HTTPX_UNCOMMONPORTS_THREADS -timeout $HTTPX_UNCOMMONPORTS_TIMEOUT -silent -retries 2 -no-color 2>>"$LOGFILE" | cut -d ' ' -f1 | grep ".$domain" | anew -q .tmp/probed_uncommon_ports_tmp.txt
 
 		NUMOFLINES=$(cat .tmp/probed_uncommon_ports_tmp.txt 2>>"$LOGFILE" | anew webs/webs_uncommon_ports.txt | wc -l)
@@ -699,7 +699,7 @@ function portscan(){
 			done
 		fi
 		if [ "$PORTSCAN_ACTIVE" = true ]; then
-			[ -s ".tmp/ips_nowaf.txt" ] && sudo nmap --top-ports 200 -sV -n --max-retries 2 -Pn --open -iL .tmp/ips_nowaf.txt -oN hosts/portscan_active.txt -oG .tmp/portscan_active.gnmap 2>>"$LOGFILE" &>/dev/null
+			[ -s ".tmp/ips_nowaf.txt" ] && nmap --top-ports 200 -sV -n --max-retries 2 -Pn --open -iL .tmp/ips_nowaf.txt -oN hosts/portscan_active.txt -oG .tmp/portscan_active.gnmap 2>>"$LOGFILE" &>/dev/null
 		fi
 		end_func "Results are saved in hosts/portscan_[passive|active].txt" ${FUNCNAME[0]}
 	else
@@ -1512,9 +1512,7 @@ function start(){
 	LOGFILE="${dir}/.log/${NOW}_${NOWT}.txt"
 	touch .log/${NOW}_${NOWT}.txt
 
-	if [ -n "$findomain_virustotal_token" ]; then
-		VT_API_KEY=$findomain_virustotal_token
-	fi
+	
 
 	printf "\n"
 	printf "${bred} Target: ${domain}\n\n"
