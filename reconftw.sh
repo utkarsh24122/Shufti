@@ -874,7 +874,7 @@ function urlchecks(){
 			fi
 			[ -s ".tmp/url_extract_tmp.txt" ] && cat .tmp/url_extract_tmp.txt | grep "${domain}" | grep -Ei "\.(js)" | anew -q js/url_extract_js.txt
 			if [ "$DEEP" = true ]; then
-				[ -s "js/url_extract_js.txt" ] && cat js/url_extract_js.txt | python3 $tools/JSA/jsa.py | anew -q .tmp/url_extract_tmp.txt
+				[ -s "js/url_extract_js.txt" ] && cat js/url_extract_js.txt | anew -q .tmp/url_extract_tmp.txt
 			fi
 			[ -s ".tmp/url_extract_tmp.txt" ] &&  cat .tmp/url_extract_tmp.txt | grep "${domain}" | grep "=" | qsreplace -a 2>>"$LOGFILE" | grep -Eiv "\.(eot|jpg|jpeg|gif|css|tif|tiff|png|ttf|otf|woff|woff2|ico|pdf|svg|txt|js)$" | anew -q .tmp/url_extract_tmp2.txt
 			[ -s ".tmp/url_extract_tmp2.txt" ] && cat .tmp/url_extract_tmp2.txt | urldedupe -s -qs | anew -q .tmp/url_extract_uddup.txt 2>>"$LOGFILE" &>/dev/null
@@ -1005,7 +1005,7 @@ function brokenLinks(){
 		start_func "Broken links checks"
 		if [ ! -s ".tmp/gospider.txt" ]; then
 			if [ "$DEEP" = true ]; then
-				[ -s "webs/webs.txt" ] && gospider -S webs/webs.txt --js -t $GOSPIDER_THREADS -d 3 --sitemap --robots -w -r > .tmp/gospider.txt
+				[ -s "webs/webs.txt" ] && gospider -S webs/webs.txt --js -t $GOSPIDER_THREADS -d 2 --sitemap --robots -w -r > .tmp/gospider.txt
 			else
 				[ -s "webs/webs.txt" ] && gospider -S webs/webs.txt --js -t $GOSPIDER_THREADS -d 2 --sitemap --robots -w -r > .tmp/gospider.txt
 			fi
