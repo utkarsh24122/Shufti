@@ -299,7 +299,7 @@ function sub_passive(){
 		subfinder -d $domain -all -o .tmp/subfinder_psub.txt 2>>"$LOGFILE" &>/dev/null
 		assetfinder --subs-only $domain 2>>"$LOGFILE" | anew -q .tmp/assetfinder_psub.txt
 		amass enum -passive -d $domain -config $AMASS_CONFIG -o .tmp/amass_psub.txt 2>>"$LOGFILE" &>/dev/null
-	
+		findomain --quiet -t $domain -u .tmp/findomain_psub.txt 2>>"$LOGFILE" &>/dev/null
 		timeout 10m waybackurls $domain | unfurl -u domains 2>>"$LOGFILE" | anew -q .tmp/waybackurls_psub.txt
 		timeout 10m gauplus -t $GAUPLUS_THREADS -random-agent -subs $domain | unfurl -u domains 2>>"$LOGFILE" | anew -q .tmp/gau_psub.txt
 		crobat -s $domain 2>>"$LOGFILE" | anew -q .tmp/crobat_psub.txt
@@ -483,7 +483,7 @@ function sub_recursive(){
 				subfinder -d $sub -all -silent 2>>"$LOGFILE" | anew -q .tmp/passive_recursive.txt
 				assetfinder --subs-only $sub 2>>"$LOGFILE" | anew -q .tmp/passive_recursive.txt
 				amass enum -passive -d $sub -config $AMASS_CONFIG 2>>"$LOGFILE" | anew -q .tmp/passive_recursive.txt
-				
+				findomain --quiet -t $sub 2>>"$LOGFILE" | anew -q .tmp/passive_recursive.txt
 			done
 			[ -s ".tmp/passive_recursive.txt" ] && puredns resolve .tmp/passive_recursive.txt -w .tmp/passive_recurs_tmp.txt -r $resolvers --resolvers-trusted $resolvers_trusted -l $PUREDNS_PUBLIC_LIMIT --rate-limit-trusted $PUREDNS_TRUSTED_LIMIT 2>>"$LOGFILE" &>/dev/null
 			[ -s ".tmp/passive_recurs_tmp.txt" ] && cat .tmp/passive_recurs_tmp.txt | anew -q subdomains/subdomains.txt
@@ -874,7 +874,7 @@ function urlchecks(){
 			fi
 			[ -s ".tmp/url_extract_tmp.txt" ] && cat .tmp/url_extract_tmp.txt | grep "${domain}" | grep -Ei "\.(js)" | anew -q js/url_extract_js.txt
 			if [ "$DEEP" = true ]; then
-				[ -s "js/url_extract_js.txt" ] && cat js/url_extract_js.txt | anew -q .tmp/url_extract_tmp.txt
+				[ -s "js/url_extract_js.txt" ] && cat js/url_extract_js.txt | python3 $tools/JSA/jsa.py | anew -q .tmp/url_extract_tmp.txt
 			fi
 			[ -s ".tmp/url_extract_tmp.txt" ] &&  cat .tmp/url_extract_tmp.txt | grep "${domain}" | grep "=" | qsreplace -a 2>>"$LOGFILE" | grep -Eiv "\.(eot|jpg|jpeg|gif|css|tif|tiff|png|ttf|otf|woff|woff2|ico|pdf|svg|txt|js)$" | anew -q .tmp/url_extract_tmp2.txt
 			[ -s ".tmp/url_extract_tmp2.txt" ] && cat .tmp/url_extract_tmp2.txt | urldedupe -s -qs | anew -q .tmp/url_extract_uddup.txt 2>>"$LOGFILE" &>/dev/null
@@ -1005,7 +1005,7 @@ function brokenLinks(){
 		start_func "Broken links checks"
 		if [ ! -s ".tmp/gospider.txt" ]; then
 			if [ "$DEEP" = true ]; then
-				[ -s "webs/webs.txt" ] && gospider -S webs/webs.txt --js -t $GOSPIDER_THREADS -d 2 --sitemap --robots -w -r > .tmp/gospider.txt
+				[ -s "webs/webs.txt" ] && gospider -S webs/webs.txt --js -t $GOSPIDER_THREADS -d 3 --sitemap --robots -w -r > .tmp/gospider.txt
 			else
 				[ -s "webs/webs.txt" ] && gospider -S webs/webs.txt --js -t $GOSPIDER_THREADS -d 2 --sitemap --robots -w -r > .tmp/gospider.txt
 			fi
@@ -1512,7 +1512,9 @@ function start(){
 	LOGFILE="${dir}/.log/${NOW}_${NOWT}.txt"
 	touch .log/${NOW}_${NOWT}.txt
 
-	
+	if [ -n "$findomain_virustotal_token" ]; then
+		VT_API_KEY=$findomain_virustotal_token
+	fi
 
 	printf "\n"
 	printf "${bred} Target: ${domain}\n\n"
